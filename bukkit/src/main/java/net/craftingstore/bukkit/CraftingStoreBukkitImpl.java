@@ -24,7 +24,7 @@ public class CraftingStoreBukkitImpl implements CraftingStorePlugin {
 
     public boolean executeDonation(Donation donation) {
         if (donation.getPlayer().isRequiredOnline()) {
-            if (Bukkit.getPlayerExact(donation.getPlayer().getUsername()) == null) {
+            if (Bukkit.getPlayer(donation.getPlayer().getUsername()) == null) {
                 return false;
             }
         }

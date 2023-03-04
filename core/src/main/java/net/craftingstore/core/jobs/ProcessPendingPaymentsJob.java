@@ -17,12 +17,13 @@ public class ProcessPendingPaymentsJob {
     }
 
     private void execute() throws CraftingStoreApiException {
-        instance.getLogger().debug("Executing ProcessPendingPaymentsJob.");
+        instance.getLogger().debug("Executing ProcessPendingPaymentsJob for "+username);
 
         Donation[] donations = instance.getPendingDonations().values().stream()
-                .filter(donation -> donation.getPlayer().getUsername().equals(this.username))
+                .filter(donation -> donation.getPlayer().getUsername().equalsIgnoreCase(this.username))
                 .toArray(Donation[]::new);
         if (donations.length == 0) {
+            instance.getLogger().debug("Executing ProcessPendingPaymentsJob length = 0");
             return;
         }
 
